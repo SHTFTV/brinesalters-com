@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+User-agent: GPTBot
+Allow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+Sitemap: https://brinesalters.com/sitemap.xml
