@@ -1,0 +1,9 @@
+{
+  "name": "brinesalters-com",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs && node scripts/authority-pages.mjs && node scripts/enhance.mjs && node scripts/refresh-sitemap.mjs",
+    "test": "node scripts/verify.mjs"
+  }
+}
