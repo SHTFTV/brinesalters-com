@@ -44,6 +44,7 @@ Deno.serve(async(req:Request)=>{
    if(error||!a||a.token_hash!==await hash(raw.token)||Date.parse(a.expires_at)<Date.now())return json(403,{error:'The submission session expired. Please start again.'});
    if(a.status==='submitted')return json(200,{success:true,id:a.id});
    for(let i=0;i<a.application.equipment.length;i++){
+    if(a.application.equipment[i].photoCount===0)continue;
     const {data:objects,error}=await db.storage.from(bucket).list(`${a.id}/${i+1}`,{limit:4});
     if(error||!objects||objects.length!==a.application.equipment[i].photoCount)return json(400,{error:'Photos are missing. Keep the form open and retry the upload.'});
     for(let p=0;p<objects.length;p++){

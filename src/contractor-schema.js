@@ -1,4 +1,4 @@
-export const equipmentTypes=['Hand-clearing crew','Snow blower','Walkway salt spreader','Walkway brine sprayer','Pickup plow truck','Granular salting truck','Truck-mounted brine system','Skid steer / Bobcat','Loader / backhoe','Dump / snow-hauling truck','Other winter equipment'];
+export const equipmentTypes=['Hand-clearing crew','Snow blower','Snow pusher','Walkway salt spreader','Walkway brine sprayer','Pickup plow truck','Granular salting truck','Truck-mounted brine system','Skid steer / Bobcat','Loader / backhoe','Dump / snow-hauling truck','Other winter equipment'];
 export function validateApplication(raw){
  const value={};
  const limits={business:100,name:100,email:255,phone:30,base:100,province:50,postalCode:7,website:200,areas:600,interest:70,response:40,availability:800,services:600,insuranceStatus:50,insurer:100,liabilityLimit:60,insuranceExpiry:10,autoCoverage:100,worksafeStatus:100,worksafeAccount:40,wcbProvince:50,coverageNotes:600,notes:800};
@@ -20,7 +20,7 @@ export function validateApplication(raw){
   if(!hand&&(!row.make||!row.model||!Number.isInteger(row.year)||row.year<1950||row.year>currentYear+1))throw Error('Enter make, model and year for equipment entry '+(i+1)+'.');
   if(hand&&!row.details)throw Error('Describe the tools and crew size for hand-clearing entry '+(i+1)+'.');
   if(!Number.isInteger(row.quantity)||row.quantity<1||row.quantity>100)throw Error('Enter quantity from 1 to 100 for entry '+(i+1)+'.');
-  if(!Number.isInteger(row.photoCount)||row.photoCount<1||row.photoCount>3)throw Error('Attach 1–3 equipment photos to entry '+(i+1)+'.');
+  if(!Number.isInteger(row.photoCount)||row.photoCount<0||row.photoCount>3)throw Error('Attach up to 3 equipment photos to entry '+(i+1)+'.');
   return row;
  });
  return value;
