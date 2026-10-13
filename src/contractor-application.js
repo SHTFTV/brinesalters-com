@@ -12,7 +12,7 @@ if(form){
   section.querySelector('[data-field=type]').addEventListener('change',e=>{const hand=e.target.value==='Hand-clearing crew';for(const k of ['make','model','year']){const input=section.querySelector('[data-field='+k+']');input.required=!hand;section.querySelector('label[for="'+input.id+'"]').textContent=({make:'Make',model:'Model',year:'Model year'}[k])+(hand?' (optional for hand crews)':' *');}section.querySelector('[data-field=details]').required=hand;});
   section.querySelector('.remove-equipment').addEventListener('click',()=>{section.remove();photos.delete(id);submission=null;});
   section.querySelector('[data-field=photos]').addEventListener('change',e=>{const files=[...e.target.files],preview=section.querySelector('.equipment-previews');preview.replaceChildren();photos.delete(id);submission=null;
-   if(files.length<1||files.length>3||files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>10*1024*1024)){e.target.setCustomValidity('Select 1–3 JPG, PNG or WebP images, each no larger than 10 MB.');e.target.reportValidity();return;}
+   if(files.length>3||files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>10*1024*1024)){e.target.setCustomValidity('Select up to 3 JPG, PNG or WebP images, each no larger than 10 MB.');e.target.reportValidity();return;}
    e.target.setCustomValidity('');photos.set(id,files);for(const file of files){const img=document.createElement('img'),url=URL.createObjectURL(file);img.src=url;img.alt='Selected equipment photo';img.onload=()=>URL.revokeObjectURL(url);preview.append(img);}
   });entries.append(section);submission=null;
  };
