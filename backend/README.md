@@ -4,7 +4,7 @@ This intake uses isolated application tables and a private equipment-photo bucke
 
 - Function: `plowwow-contractor-apply`, JWT verification enabled.
 - Public page: `https://brinesalters.com/contractor-apply/`.
-- Review: use the authenticated Supabase Table Editor for `contractor_applications` and `contractor_equipment`; filter applications to `status = submitted`, excluding `is_test = true`.
+- Review: use the authenticated Supabase Table Editor for `contractor_review_queue`. It shows review columns and excludes incomplete uploads and test records. Equipment entries are in `contractor_equipment`; changes to review status are made in `contractor_applications`.
 - Photos: private `contractor-equipment` bucket, application ID / equipment entry / photo number. No public read or listing policy.
 - Public keys in `src/contractor-config.js` identify the application only. Never place a service-role or secret key in that file.
 - The Edge Function uses the platform's built-in server-only service-role environment for validation, rate limits, storage and finalization.
